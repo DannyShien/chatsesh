@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   get "friendship/create"
-  get "sessions/new"
+  get "sessions/new" => "sessions#new" 
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
-  resources :friendships
+  #resources :friendships
+  post "friendship/create" => "friendship#create"
 
   get "logout" => "sessions#destroy"
   get "login" => "sessions#new"

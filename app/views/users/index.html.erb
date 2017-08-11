@@ -1,12 +1,10 @@
-<%= current_user.email %>
-
 <table class="table">
   <tbody>
     <% User.all.each do |user| %>
       <tr>
-        <td><%= image_tag user.image_url_or_default %></tr>
-        <td><%= user.name %></tr>
-        <td><%= user.email %></tr>
+        <td><%= image_tag user.image_url_or_default %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
           <td>
           <% if @current_user.is_friend?(user)%>
             <%= form_tag remove_friend_path do %>
@@ -16,11 +14,12 @@
           <% else %>
             <%= form_for Friendship.new do |f| %>
               <%= f.hidden_field :friend_id, value: user_id %>
-              <%= fsubmit 'add', class: "btn buttom-primary" %>
+              <%= f.submit 'add', class: "btn buttom-primary" %>
             <% end %>
           <% end %>
         </td>
       </tr>
+      <% end %>
   </tbody>
 </table>
 

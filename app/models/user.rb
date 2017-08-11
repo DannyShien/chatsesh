@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :friends, through: :friendships
   has_secure_password
 
-  def image_ur_or_default
+  def image_url_or_default
     image_url.presence || "http://lorempixel.com/400/200/people/"
   end
 
