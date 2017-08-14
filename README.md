@@ -8,10 +8,10 @@ A Facebook clone for the Bootcamp Ruby class.
 - [x] User can sign up
 - [x] User can sign in
 - [x] A visitor can view a list of users
-- [x] User can update profile information (name, email, image)
+- [ ] User can update profile information (name, email, image)
 - [x] User can add another User as friend
 - [x] User can send a message to a friend
-
+- [ ] User can remove friends from friends list
 
 ## Optional features
 
