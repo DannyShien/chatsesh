@@ -3,20 +3,33 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if @user = User.find_by(email: params[:email])
-      if @user.authenticate(params[:password])
-        log_in(@user)
-        redirect_to root_path, flash: {notice: "Logged In."}
+    if user = User.find_by(email: params[:email])
+      if user.authenticate(params[:password])
+        login(user)
+        flash[:success] = "Logged in!"
       else
-        redirect_to new_session_path, flash: {notice: "Invalid Password."}
+        flash[:error] = "Invalid password."
       end
     else
-      redirect_to new_session_path, flash: {notice: "Invalid Email"}
+      flash[:error] = "Invalid email."
+    end
+    
+    redirect_to root_path
+  end
+  
+  def destroy
+    logout(current_user)
+    redirect_to root_path, flash: {success: "Logged out."}
+  end
+  
+  def callback 
+    if user = User.from_omniauth(request.env["omniauth.auth"])
+      login(user)
+      redirect_to root_path, flash: {success: "Logged In"}
+    else
+      flash[:error] = "Login failed: #{user.error.full_messages.to_sentence}"
+      redirect_to root_path
     end
   end
-
-  def destroy
-    log_out
-    redirect_to root_path, flash: {notice: "Logged out."}
-  end
 end
+

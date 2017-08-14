@@ -1,30 +1,61 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>chatsesh App</title>
+    <title>chatsesh0.3</title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <nav class="nav justify-content-center" style="margin-bottom: 25px; padding-top: 5px;">
-      <ul class="nav nav-pills">
-        <% if current_user %>
-        <li class="nav-item">
-          <%= link_to "Log out #{current_user.email}", logout_path, class: "nav-link" %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-          <%= link_to "Log In", login_path, class: "nav-link"%>
-          </li>
-          <li class="nav-item">
-          <%= link_to "Sign Up", new_user_path, class: "nav-link"%>
-          </li>
-        <% end %>
-      </ul>
+      <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=1378514698912034";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/">
+            chatsesh
+          </a>
+        <div class="navbar-menu">
+          <div class="navbar-end">
+              <% if current_user %>
+                <%= link_to profile_path, class: "navbar-item" do %>
+                  <%= image_tag current_user.image_url_or_default %>
+                  &nbsp;<%= current_user.name %>
+                <% end %>
+
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a href="/" class="navbar-link">
+                  <%= icon("users", "Friends") %>
+                </a>
+
+                <div class="navbar-dropdown">
+                  <%= link_to "My Friends", friendships_path, class: "navbar-item" %>
+                  <%= link_to "Friends", friendships_path, class:"navbar-item" %>
+                </div>
+              </div>
+
+              <%= link_to icon("comment", "Messages"), messages_path, class: "navbar-item" %>
+              <%= link_to icon("sign-out","Log Out"), logout_path, class: "navbar-item" %>
+            <% else %>
+              <%= link_to "Sign Up", new_user_path, class: "navbar-item" %>
+              <%= link_to "Log In", login_path, class: "navbar-item" %>
+            <% end %>
+          </div>
+        </div>  
+        </div>  
+      </div>
     </nav>
     <%= flash_messages %>
-    <%= yield %>
+
+    <div class="container is-fluid" style="margin-top: 20px">
+    <%= content_for?(:content) ? yield(:content) : yield %>
+    </div>
   </body>
 </html>

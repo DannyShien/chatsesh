@@ -1,17 +1,17 @@
 class FriendshipsController < ApplicationController
   def create
-    another = User.find(friendship_params[:friend_id])
-    current_user.add_friend(another)
-
+    current_user.friendships.create!(friendship_params)
     redirect_to users_path
   end
 
-  def destroy 
-    Friendship.where(user: current_user, friend_id: params[:friend_id]).take.destroy
-  redirect_to users_path
+  def destroy
+    another_user = User.find_params[:user_id]
+    current_user.friends.delete(another_user)
+    redirect_to users_path
   end
-
+s
+  private
   def friendship_params
-    params.require(:friendship).permit(friend_id)
+    params.require(:friendship).permit(:friend_id)
   end
 end

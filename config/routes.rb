@@ -1,17 +1,26 @@
 Rails.application.routes.draw do
-  get "friendship/create"
-  get "sessions/new" => "sessions#new" 
+  get 'auth/:provider/callback' => 'sessions#callback'
 
-  resources :sessions, only: [:new, :create, :destroy]
-  resources :users
-  #resources :friendships
-  post "friendship/create" => "friendship#create"
+  get "profile" => "users#edit"
 
-  get "logout" => "sessions#destroy"
+  resources :messages do
+    collection do
+      get :inbox
+      get :sent
+    end
+  end
+  
+  delete "remove_friend" => "friendships#destroy"
+  
   get "login" => "sessions#new"
   post "login" => "sessions#create"
+  get "logout" => "sessions#destroy"
+  resources :users
+  resources :friendships
+  
+  
+
+  root 'home#index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root "home#index"
-  post "remove_friend" => "friendship#destroy"
 end

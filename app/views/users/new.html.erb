@@ -1,44 +1,26 @@
-<div class="sign-up">
-  <h1>Sign Up</h1>
-</div>
-
-<div class="card" style="width: 350px; margin-left: auto; margin-right: auto">
-  <div class="card-block">
-    <% if @user.errors.any? %>
-      <div id="error_explanation" class="alert alert-danger">
-        <strong>
-          Cannot save due to <%= pluralize(@user.errors.count, "error") %>
-        </strong>
-          <ul>
-            <% @user.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul>
+<div class="columns is-centered">
+  <div class="column is-4">
+    <div class="card">
+      <div class="card-header">
+        <h1 class="card-header-title">Create An Account</h1>
       </div>
-    <% end %>
-
-    <%= form_for @user do |f| %>
-      <div class="form-group">
-        <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+      <div class="card-content">
+        <%= form_for @user do |f| %>
+          <div class="field">
+            <%= f.text_field :name, placeholder: "Name", class: "input" %>
+          </div>
+          <div class="field">
+            <%= f.text_field :email, placeholder: "Email", class: "input" %>
+          </div>
+          <div class="field">
+            <%= f.password_field :password, placeholder: "Password", class: "input" %>
+          </div>
+          <div class="field">
+            <%= f.submit "Register", class: "button is-primary" %>
+          </div>
+        <% end %>
       </div>
-      <div class="form-group">
-        <%= f.text_field :email, class: "form-control", placeholder: "Email"  %>
+      <div class="card-footer">
       </div>
-      <div class="form-group">
-        <%= f.text_field :password, class: "form-control", placeholder: "Password"   %>
-      </div>
-      <div class="form-group">
-        <%= f.text_field :password_confirmation, class: "form-control", placeholder: "Confirm Password"  %>
-      </div>
-      <div class="form-group">
-        <%= f.submit class: "btn btn-primary"%>
-      </div>
-        <div class="fb-login-button" data-width="250px" data-max-rows="1" 
-                    data-size="large" data-button-type="continue_with" 
-                    data-show-faces="false" data-auto-logout-link="false" 
-                    data-use-continue-as="false">
-        </div>
-    <% end %>
+    </div>
   </div>
-</div>
-

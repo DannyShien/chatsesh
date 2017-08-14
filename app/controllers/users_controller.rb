@@ -1,20 +1,37 @@
 class UsersController < ApplicationController
-def new
+  before_action :require_login, only: [:index]  
+
+  def new
     @user = User.new
   end
 
   def create
     @user = User.new user_params
     if @user.save
-      log_in(@user)
-      redirect_to root_path, flash: {success: "Created account."}
+      flash[:success] = "User created."
+      redirect_to root_path
     else
-      render "new"
+      render 'new'
     end
   end
 
-  private
-  def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  def edit
+    @user = current_user
   end
+
+  def update
+    current_update.update(user_params)
+    redirect_to root_path
+  end
+
+  def index
+    @users = User.all
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password)
+  end
+
 end
