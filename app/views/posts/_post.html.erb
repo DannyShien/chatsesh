@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="content">
-      <% post.body %>
+      <%= post.body %>
     </div>
   </div>
   <div class="card-footer">
@@ -25,5 +25,5 @@
     </div>
   </div>
   <div class="card-footer">
-    <%= post.likes.map{|e| e.user_name}.to_s   %>
+    <%= post.likes.map{|e| e.user_name}.to_sentence   %>
 </div>

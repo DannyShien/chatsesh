@@ -1,6 +1,2 @@
 <h1 class="title">Inbox</h1>
 <%= render @messages %>
-
-<% Post.all.each do |post| %>
-    <%= render "posts/post", post: post %>
-  <% end %>
