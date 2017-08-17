@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
+  post "toggle_like" => "likes#toggle"
+  
   get 'auth/:provider/callback' => 'sessions#callback'
-
+  
   get "profile" => "users#edit"
-
+  
+  resources :users
+  resources :friendships
+  resources :posts, only: [:create]
   resources :messages do
     collection do
       get :inbox
@@ -15,8 +20,6 @@ Rails.application.routes.draw do
   get "login" => "sessions#new"
   post "login" => "sessions#create"
   get "logout" => "sessions#destroy"
-  resources :users
-  resources :friendships
   
   
 

@@ -5,11 +5,13 @@ class User < ApplicationRecord
   has_many :friends, through: :friendships
   has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
   has_many :received_messages, class_name: "Message", foreign_key: "recipient_id"  
+  has_many :posts, foreign_key: "poster_id", dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   has_secure_password
 
   def image_url_or_default
-    image_url.presence || "http://lorempixel  .com/128/128/people/"
+    image_url.presence || "http://lorempixel.com/128/128/people/"
   end
   
   def add_friend(another_user)
@@ -60,5 +62,17 @@ class User < ApplicationRecord
     #
     # Finally, return user
     user.save && user
+  end
+
+  def toggle_like!(item)
+    if like = likes.where(item: item).first
+      likes.destroy
+    else
+      likes.where(item: item).create!
+    end
+  end
+
+  def liking?(item)
+    likes.where(item: item).exists?
   end
 end

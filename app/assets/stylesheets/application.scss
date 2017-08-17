@@ -3,3 +3,12 @@
 @import "sessions";
 @import "users";
 @import "font-awesome";
+@import "posts";
+
+.post.card{
+  margin-bottom: 1em;
+  
+  i.fa{
+    margin-right: 5px; 
+  }
+}

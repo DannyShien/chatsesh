@@ -1,0 +1,29 @@
+<div class="card post">
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+        <div class="image is-32x32">
+          <%= image_tag "http://lorempixel.com/128/128/people/" %>
+        </div>
+      </div>
+      <div class="media-content">
+        <div class="title"><%= post.poster.name %></div>
+        <small><%= time_ago_in_words post.updated_at %> ago</small>
+      </div>
+    </div>
+    <div class="content">
+      <% post.body %>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="level">
+      <div class="level-left">
+        <%= link_to icon("thumbs-up", "Like"), toggle_like_path(post_id: post.id), 
+                    class: "level-item button is-white #{'is-liked' if current_user && current_user.liking?(post)}", method: 'post' %>
+        <%= link_to icon("comment", "Comment"), "/", class: "level_item button is-white" %>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= post.likes.map{|e| e.user_name}.to_s   %>
+</div>
