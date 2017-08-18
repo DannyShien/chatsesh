@@ -1,4 +1,4 @@
-<div class="card post">
+<div class="card post" id="<%= dom_id post %>">
   <div class="card-content">
     <div class="media">
       <div class="media-left">
@@ -19,7 +19,8 @@
     <div class="level">
       <div class="level-left">
         <%= link_to icon("thumbs-up", "Like"), toggle_like_path(post_id: post.id), 
-                    class: "level-item button is-white #{'is-liked' if current_user && current_user.liking?(post)}", method: 'post' %>
+        class: "js-like-button button is-white #{'is-liked' if current_user && current_user.liking?(post)}", 
+        method: 'post', remote: true %>
       </div>
     </div>
   </div>
@@ -28,9 +29,12 @@
   </div>
     <div>
       <% post.comments.each do |comment|%>
-        <li> 
-          <%= "#{comment.user.name} : #{comment.body}" %>
-        </li>
+        <div class="media">
+          <div class="media-left"> 
+            <%= comment.user.name %>
+          </div>
+          <div class="media-content>"><%= comment.body %></div>
+        </div>
       <% end %>
     </div>
   <%= form_for(current_user.comments.build(post: post)) do |f| %>  
