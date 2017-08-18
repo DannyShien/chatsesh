@@ -1,7 +1,27 @@
-.post.card{
-  margin-bottom: 1em;
-  
-  i.fa{
-    margin-right: 5px; 
-  }
+.title {
+  color: #363636;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.125;
+}
+
+small {
+  font-size: 12px;
+}
+
+.title:not(:last-child), .subtitle:not(:last-child) {
+  margin-bottom: 0;
+}
+
+.card-content {
+  padding: 8px;
+  border-width: 2px;
+}
+
+.media-content{
+  max-width: 100%;
+}
+
+nav.level {
+  background-color: white;
 }

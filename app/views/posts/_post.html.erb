@@ -7,12 +7,12 @@
         </div>
       </div>
       <div class="media-content">
-        <div class="title"><%= post.poster.name %></div>
+        <p class="is-title"><%= post.poster.name %></p>
         <small><%= time_ago_in_words post.updated_at %> ago</small>
       </div>
     </div>
     <div class="content">
-      <%= post.body %>
+      <p><%= post.body %></p>
     </div>
   </div>
   <div class="card-footer">
@@ -24,26 +24,39 @@
       </div>
     </div>
   </div>
-  <div class="card-footer">
-    <%= post.likes.map{|e| e.user_name}.to_sentence   %>
+  <div class="card-footer likes sentence">
+    <span class="fa-stack fa-sm">
+      <i class="fa fa-circle-thin fa-stack-2x"></i>
+      <i class="fa fa-thumbs-up fa-stack-1x"></i>
+    </span>
+    <%= post.likes.map{|e| e.user_name}.to_sentence  %>
   </div>
-    <div>
-      <% post.comments.each do |comment|%>
+    <% post.comments.each do |comment|%>
+      <div class="comment card-content">
         <div class="media">
           <div class="media-left"> 
-            <%= comment.user.name %>
+            <p class="image is-32x32">
+              <%= image_tag "http://lorempixel.com/128/128/people/" %>
+            </p>
           </div>
-          <div class="media-content>"><%= comment.body %></div>
+          <div class="media-content>"><%= comment.body %>
+            <div class="level">
+              <div class="level-left">
+                <a class="level-item" rel="nofollow" data-method="post" href="/likes?">Like</a>
+                <small><%= time_ago_in_words post.updated_at %> ago</small>
+              </div>
+            </div>
+          </div>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   <%= form_for(current_user.comments.build(post: post)) do |f| %>  
     <%= f.hidden_field :post_id %>        
     <div class="card-content">
       <div class="media">
         <div class="media-left">
           <div class="image is-32x32">
-            Image
+            <%= image_tag "http://lorempixel.com/128/128/people/" %>
           </div>
         </div>
         <div class="media-content">          
