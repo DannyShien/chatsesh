@@ -20,7 +20,21 @@
       <div class="level-left">
         <%= link_to icon("thumbs-up", "Like"), toggle_like_path(post_id: post.id), 
                     class: "level-item button is-white #{'is-liked' if current_user && current_user.liking?(post)}", method: 'post' %>
-        <%= link_to icon("comment", "Comment"), "/", class: "level_item button is-white" %>
+        <%= form_for(current_user.comments.build) do |f| %>
+          <div class="field">
+            <div class="control">
+              <%= f.hidden_field :post_id, value: post.id %>
+              <%= f.text_area :body, class: "input" %>
+            </div>
+          </div>
+          <div class="field">
+            <div class="conrtol">
+              <button class="button is-primary">
+                <%= icon("send", "Send") %>
+              </button>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

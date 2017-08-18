@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'comments/create'
+
+  get 'comments/destroy'
+
   post "toggle_like" => "likes#toggle"
   
   get 'auth/:provider/callback' => 'sessions#callback'
@@ -6,6 +10,7 @@ Rails.application.routes.draw do
   get "profile" => "users#edit"
   
   resources :users
+  resources :comments
   resources :friendships
   resources :posts, only: [:create]
   resources :messages do

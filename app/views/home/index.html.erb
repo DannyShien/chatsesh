@@ -1,22 +1,33 @@
 <div class="content">
   <h2>NewsFeed</h2>
+ 
 
-<%= form_for(current_user.posts.build) do |f| %>
-  <%= f.hidden_field :poster_id, value: current_user.id %>
-  <%= f.text_field :body %>
-<% end %>
-
-
-  <% if current_user %>
-  <% Post.all.each do |post| %>
-    <%= render "posts/post", post: post %>
+  <%= form_for(current_user.posts.build) do |f| %>
+  <div class="card" style="margin-bottom: 20px">
+    <div class="card-content">
+      <div class="field">
+        <div class="control">
+          <%= f.hidden_field :poster_id, value: current_user.id %>
+          <%= f.text_area :body, class: "textarea" %>
+        </div>
+      </div>
+      <div class="field">
+        <div class="conrtol">
+          <button class="button is-primary">
+            <%= icon("send", "Send") %>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
   <% end %>
 
 
-  
-  
-  
-  
+
+  <% if current_user %>
+  <% @posts.each do |post| %>
+    <%= render "posts/post", post: post %>
+    <% end %>
   <% else %>
     <%= link_to "Create An Account", new_user_path, class: "button is-primary" %>
     <div class="fb-login-button" data-width="100" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="true" data-auto-logout-link="true" data-use-continue-as="false"></div>

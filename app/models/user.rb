@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :received_messages, class_name: "Message", foreign_key: "recipient_id"  
   has_many :posts, foreign_key: "poster_id", dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   has_secure_password
 
