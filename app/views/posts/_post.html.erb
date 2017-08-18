@@ -20,24 +20,32 @@
       <div class="level-left">
         <%= link_to icon("thumbs-up", "Like"), toggle_like_path(post_id: post.id), 
                     class: "level-item button is-white #{'is-liked' if current_user && current_user.liking?(post)}", method: 'post' %>
-        <%= form_for(current_user.comments.build) do |f| %>
-          <div class="field">
-            <div class="control">
-              <%= f.hidden_field :post_id, value: post.id %>
-              <%= f.text_area :body, class: "input" %>
-            </div>
-          </div>
-          <div class="field">
-            <div class="conrtol">
-              <button class="button is-primary">
-                <%= icon("send", "Send") %>
-              </button>
-            </div>
-          </div>
-        <% end %>
       </div>
     </div>
   </div>
   <div class="card-footer">
     <%= post.likes.map{|e| e.user_name}.to_sentence   %>
+  </div>
+    <div>
+      <% post.comments.each do |comment|%>
+        <li> 
+          <%= "#{comment.user.name} : #{comment.body}" %>
+        </li>
+      <% end %>
+    </div>
+  <%= form_for(current_user.comments.build(post: post)) do |f| %>  
+    <%= f.hidden_field :post_id %>        
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          <div class="image is-32x32">
+            Image
+          </div>
+        </div>
+        <div class="media-content">          
+          <%= f.text_field :body, class: "input", placeholder: "Write a comment..." %>
+        </div>
+      </div>          
+    </div>
+  <% end %>  
 </div>
