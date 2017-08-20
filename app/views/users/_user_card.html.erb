@@ -1,0 +1,25 @@
+
+<div class="card">
+  <div class="card-content">
+    <article class="media">
+      <figure class="media-left"><%= image_tag user.image_url_or_default %></figure>
+      <div class="media-content">
+        <div>
+          <p class="subtitle">
+            <strong><%= user.name %></strong>
+          </p>
+          <div class="media-right">
+            <% if current_user.is_friend?(user) %>
+              <%= link_to "Remove Friend", remove_friend_path(user_id: user), class: "buttom is-small is-danger", method: :delete %>
+            <% else %>
+              <%= form_for current_user.friendships.build(friend: user) do |f| %>
+                <%= f.hidden_field :friend_id %>
+                <%= f.submit "Add Friend", class: "button is-primary" %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>

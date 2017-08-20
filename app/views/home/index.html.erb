@@ -1,6 +1,6 @@
 <% unless current_user %>
   <%= link_to "Create An Account", new_user_path, class: "button is-primary" %>
-  <div class="fb-login-button" data-width="100" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="true" data-auto-logout-link="true" data-use-continue-as="false"></div>
+  <%= link_to icon("facebook", "Log in with Facebook"), "/auth/facebook", class: "button is-info" %>
 <% else %>
   <div class="container">  
     <div class="columns">
@@ -26,7 +26,7 @@
               <div class="media-content">             
                 <div class="field">
                   <%= f.hidden_field :poster_id, value: current_user.id %>
-                  <%= f.text_area :body, class: "textarea", placeholder: "What's on your mind, #{current_user.name}" %>
+                  <%= f.text_area :body, class: "textarea", placeholder: "What's on your mind, #{current_user.name}?" %>
                 </div>
                 <nav class="level">
                   <div class="level-left">
@@ -42,10 +42,9 @@
             </article>
           </div>
         </div>
-        <% end %>
-
+        <% end %>        
         <% @posts.each do |post| %>
-        <%= render "posts/post", post: post %>
+          <%= render "posts/post", post: post %>
         <% end %>
         </div>
       </div>
