@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'comments/create'
-
-  get 'comments/destroy'
-
   post "toggle_like" => "likes#toggle"
   
   get 'auth/:provider/callback' => 'sessions#callback'

@@ -1,56 +1,57 @@
-<div class="container">  
-  <div class="columns">
-    <div class="column is-3">
-      <aside class="menu">
-        <ul class="menu-list">
-          <p class="title">Apps</p>
-            <li><%= link_to "NewsFeed", root_path, class: "#{'is-active' if current_page?(root_path)}" %></li>
-            <li><%= link_to "Messages", new_message_path, class: "#{'is-active' if current_page?(inbox_messages_path)}" %></li>
-        </ul>
-      </aside>
-    </div>
-    <div class="column is-7">
-      <%= form_for(current_user.posts.build) do |f| %>
-      <div class="card-post" style="margin-bottom: 20px">
-        <div class="card-content">
-          <div class="media">
-            <div class="media-left">
-              <div class="image is-32x32">
-                <%= image_tag "http://lorempixel.com/128/128/people/" %>
-              </div>
-            </div>
-            <div class="media-content">             
-              <div class="field">
-                <%= f.hidden_field :poster_id, value: current_user.id %>
-                <%= f.text_area :body, class: "textarea", placeholder: "What's on your mind, #{current_user.name}" %>
-              </div>
-              <nav class="level">
-                <div class="level-left">
-                  <div class="level-item"></div>
-                </div>  
-                <div class="level-right">
-                  <button class="level-item button is-primary">
-                    <p><%= icon("send", "Send") %></p>
-                  </button>
+<% unless current_user %>
+  <%= link_to "Create An Account", new_user_path, class: "button is-primary" %>
+  <div class="fb-login-button" data-width="100" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="true" data-auto-logout-link="true" data-use-continue-as="false"></div>
+<% else %>
+  <div class="container">  
+    <div class="columns">
+      <div class="column is-one-quarter">
+        <aside class="menu">
+          <ul class="menu-list">
+            <p class="title">Apps</p>
+              <li><%= link_to icon("newspaper-o", "NewsFeed"), root_path, class: "#{'is-active' if current_page?(root_path)}" %></li>
+              <li><%= link_to icon("comments", "Messages"), new_message_path, class: "#{'is-active' if current_page?(inbox_messages_path)}" %></li>
+          </ul>
+        </aside>
+      </div>
+      <div class="column is-two-thirds">
+        <%= form_for(current_user.posts.build) do |f| %>
+        <div class="card-post" style="margin-bottom: 20px">
+          <div class="card-content">
+            <article class="media">
+              <figure class="media-left">
+                <p class="image is-32x32">
+                  <%= image_tag "http://lorempixel.com/128/128/people/" %>
+                </p>
+              </figure>
+              <div class="media-content">             
+                <div class="field">
+                  <%= f.hidden_field :poster_id, value: current_user.id %>
+                  <%= f.text_area :body, class: "textarea", placeholder: "What's on your mind, #{current_user.name}" %>
                 </div>
-              </nav>  
-            </div>
+                <nav class="level">
+                  <div class="level-left">
+                    <div class="level-item"></div>
+                  </div>  
+                  <div class="level-right">
+                    <button class="level-item button is-primary">
+                      <p><%= icon("send", "Send") %></p>
+                    </button>
+                  </div>
+                </nav>  
+              </div>
+            </article>
           </div>
         </div>
-      </div>
-      <% end %>
-      <div class="column"></div>
-      <% if current_user %>
-        <% @posts.each do |post| %>
-          <%= render "posts/post", post: post %>
         <% end %>
-      <% else %>
-        <%= link_to "Create An Account", new_user_path, class: "button is-primary" %>
-        <div class="fb-login-button" data-width="100" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="true" data-auto-logout-link="true" data-use-continue-as="false"></div>
-      <% end %>
+
+        <% @posts.each do |post| %>
+        <%= render "posts/post", post: post %>
+        <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
-    
-                  
+<% end %>
+                    
+
+          

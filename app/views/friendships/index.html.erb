@@ -1,2 +1,12 @@
-<h1 class="title">Friends List</h1>
 
+
+<% if current_user %>
+  <h1>Welcome, <%= current_user.name %></h1>
+
+  <div>Profile</div>
+  
+<% else %>
+  <h1>Welcome Guest
+  <%= link_to "Create An Account", new_user_path, class: "button is-primary" %>
+  <%= link_to "Log-in", login_path, class: "btn is-primary" %>
+<% end %>

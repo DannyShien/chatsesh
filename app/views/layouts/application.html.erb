@@ -21,7 +21,7 @@
         <div class="navbar-brand">
           <a class="navbar-item" href="/">
             chatsesh
-          </a>
+          </a> 
         <div class="navbar-menu">
           <div class="navbar-end">
               <% if current_user %>
@@ -29,20 +29,9 @@
                   <%= image_tag current_user.image_url_or_default %>
                   &nbsp;<%= current_user.name %>
                 <% end %>
-
-                <div class="navbar-item has-dropdown is-hoverable">
-                  <p class="navbar-link">
-                    <%= icon("users", "Friends") %>
-                  </p>
-
-                  <div class="navbar-dropdown">
-                    <%= link_to "My Friends", users_path, class: "navbar-item" %>
-                    <%= link_to "Friends", users_path, class:"navbar-item" %>
-                  </div>
-                </div>
-
-                <%= link_to icon("comment", "Messages"), messages_path, class: "navbar-item" %>
-                <%= link_to icon("sign-out","Log Out"), login_path, class: "navbar-item" %>
+                <%= link_to icon("users", "Friends"), users_path, class: "navbar-item" %>
+                <%= link_to icon("comments", "Messages"), messages_path, class: "navbar-item" %>
+                <%= link_to icon("sign-out","Log Out"), logout_path, class: "navbar-item" %>
               <% else %>
                 <%= link_to "Sign Up", new_user_path, class: "navbar-item" %>
               <% end %>

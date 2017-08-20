@@ -1,16 +1,15 @@
 class User < ApplicationRecord
-  validates :name, :email, presence: true
-  
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
-
+  
   has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
   has_many :received_messages, class_name: "Message", foreign_key: "recipient_id"  
   
   has_many :posts, foreign_key: "poster_id", dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
-
+  
+  validates :name, :email, presence: true
   has_secure_password
 
   def image_url_or_default
