@@ -9,13 +9,9 @@ small {
   font-size: 12px;
 }
 
-.title:not(:last-child), .subtitle:not(:last-child) {
-  margin-bottom: 0;
-}
 
 .card-content {
   padding: 8px;
-  border-width: 2px;
 }
 
 .media-content{
@@ -25,3 +21,15 @@ small {
 nav.level {
   background-color: white;
 }
+
+
+.is-liked {
+  color: aqua !important;
+  margin-right: 10px;
+}
+
+.js-like-comment {
+  margin-right: 10px;
+}
+
+

@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   
   def require_login
     if @current_user == current_user
-      flash[:error] = "Access denied!"
       redirect_to root_path
     end
   end

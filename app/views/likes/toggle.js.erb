@@ -1,2 +1,8 @@
-$("#<%= dom_id @item %>").find(".js-like-button").toggleClass("is-liked");
+<% if @item.class == Post %>
+  $("#<%= dom_id @item %>").find(".js-like-post").toggleClass("is-liked");
+  $("#<%= dom_id @item %>").find(".users_names").html("<%= @item.likes.map{|e| e.user_name}.to_sentence  %>")
+
+<% else %>
+  $("#<%= dom_id @item %>").find(".js-like-comment").toggleClass("is-liked");
+<% end %>
 

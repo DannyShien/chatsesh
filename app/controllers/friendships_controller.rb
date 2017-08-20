@@ -1,4 +1,7 @@
 class FriendshipsController < ApplicationController
+  def index 
+    @friends = User.all
+  end
   def create
     current_user.friendships.create!(friendship_params)
     redirect_to users_path

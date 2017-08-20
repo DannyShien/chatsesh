@@ -5,9 +5,11 @@ class UserTest < ActiveSupport::TestCase
   #   assert true
   # end
 
-  test "shoud allow setting name" do
+  test "should allow setting name" do
     a = User.new
     a.name = "Adam"
     assert_equal "Adam", a.name
   end
 end
+
+

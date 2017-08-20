@@ -1,6 +1,6 @@
 <div class="container">  
   <div class="columns">
-    <div class="column is-one-quarter">
+    <div class="column is-3">
       <aside class="menu">
         <ul class="menu-list">
           <p class="title">Apps</p>
@@ -9,7 +9,7 @@
         </ul>
       </aside>
     </div>
-    <div class="column is-two-thirds">
+    <div class="column is-7">
       <%= form_for(current_user.posts.build) do |f| %>
       <div class="card-post" style="margin-bottom: 20px">
         <div class="card-content">
@@ -22,9 +22,12 @@
             <div class="media-content">             
               <div class="field">
                 <%= f.hidden_field :poster_id, value: current_user.id %>
-                <%= f.text_area :body, class: "textarea", placeholder: "What's on your mind,#{current_user.name}" %>
+                <%= f.text_area :body, class: "textarea", placeholder: "What's on your mind, #{current_user.name}" %>
               </div>
               <nav class="level">
+                <div class="level-left">
+                  <div class="level-item"></div>
+                </div>  
                 <div class="level-right">
                   <button class="level-item button is-primary">
                     <p><%= icon("send", "Send") %></p>
@@ -36,6 +39,7 @@
         </div>
       </div>
       <% end %>
+      <div class="column"></div>
       <% if current_user %>
         <% @posts.each do |post| %>
           <%= render "posts/post", post: post %>
@@ -47,5 +51,6 @@
       </div>
     </div>
   </div>
+</div>
     
                   

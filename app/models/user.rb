@@ -3,8 +3,10 @@ class User < ApplicationRecord
   
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
+
   has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
   has_many :received_messages, class_name: "Message", foreign_key: "recipient_id"  
+  
   has_many :posts, foreign_key: "poster_id", dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -26,6 +28,14 @@ class User < ApplicationRecord
   def friend_names
     friends.map{|e| e.name}
   end
+
+  # def friends 
+  #   result = []
+  #   friendships.each do |fs|
+  #     results << User.find(fs.friend_id) 
+  #   end
+  #   results
+  # end
 
   def self.except(user)
     where.not(id: user.id)
@@ -67,7 +77,7 @@ class User < ApplicationRecord
 
   def toggle_like!(item)
     if like = likes.where(item: item).first
-      likes.destroy
+      like.destroy  
     else
       likes.where(item: item).create!
     end

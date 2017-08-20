@@ -19,8 +19,8 @@
     <div class="level">
       <div class="level-left">
         <%= link_to icon("thumbs-up", "Like"), toggle_like_path(post_id: post.id), 
-        class: "js-like-button button is-white #{'is-liked' if current_user && current_user.liking?(post)}", 
-        method: 'post', remote: true %>
+          class: "js-like-post button is-white #{'is-liked' if current_user && current_user.liking?(post)}", 
+          method: 'post', remote: true %>
       </div>
     </div>
   </div>
@@ -29,10 +29,12 @@
       <i class="fa fa-circle-thin fa-stack-2x"></i>
       <i class="fa fa-thumbs-up fa-stack-1x"></i>
     </span>
+    <div class="users_names">
     <%= post.likes.map{|e| e.user_name}.to_sentence  %>
+    </div>
   </div>
     <% post.comments.each do |comment|%>
-      <div class="comment card-content">
+      <div class="comment card-content" id="<%= dom_id comment %>">
         <div class="media">
           <div class="media-left"> 
             <p class="image is-32x32">
@@ -42,7 +44,8 @@
           <div class="media-content>"><%= comment.body %>
             <div class="level">
               <div class="level-left">
-                <a class="level-item" rel="nofollow" data-method="post" href="/likes?">Like</a>
+                <%= link_to "Like", toggle_like_path(comment_id: comment.id), class: "js-like-comment #{'is-liked' if current_user && current_user.liking?(post)}", 
+                    method: 'post', remote: true %>
                 <small><%= time_ago_in_words post.updated_at %> ago</small>
               </div>
             </div>
