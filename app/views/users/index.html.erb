@@ -14,7 +14,7 @@
         <td><%= image_tag another_user.image_url_or_default %></td>
         <td><%= another_user.name %></td>
         <td><%= another_user.email %></td>
-        <td>
+         <td>
           <% if @current_user.is_friend?(another_user) %>
             <%= link_to "Remove Friend", remove_friend_path(user_id: another_user), class: "buttom is-danger", method: :delete %>
           <% else %>

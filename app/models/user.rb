@@ -19,6 +19,8 @@ class User < ApplicationRecord
   
   def add_friend(another_user)
     friends << another_user
+    # friendships.create(friend: another_user)
+    # Friendship.create(user_id: id, friend_id: another_user.id)
   end
   
   def is_friend?(another_user)

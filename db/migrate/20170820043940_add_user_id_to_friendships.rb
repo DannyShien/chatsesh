@@ -4,3 +4,4 @@ class AddUserIdToFriendships < ActiveRecord::Migration[5.1]
     add_column :friendships, :friend_id, :integer
   end
 end
+ 
