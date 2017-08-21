@@ -24,48 +24,7 @@
       </div>
     </div>
   </div>
-  <div class="card-footer likes sentence">
-    <span class="fa-stack fa-sm">
-      <i class="fa fa-circle-thin fa-stack-2x"></i>
-      <i class="fa fa-thumbs-up fa-stack-1x"></i>
-    </span>
-    <div class="users_names">
-    <%= post.likes.map{|e| e.user_name}.to_sentence  %>
-    </div>
-  </div>
-    <% post.comments.each do |comment|%>
-      <div class="comment card-content" id="<%= dom_id comment %>">
-        <div class="media">
-          <div class="media-left"> 
-            <p class="image is-32x32">
-              <%= image_tag "http://lorempixel.com/128/128/people/" %>
-            </p>
-          </div>
-          <div class="media-content>"><%= comment.body %>
-            <div class="level">
-              <div class="level-left">
-                <%= link_to "Like", toggle_like_path(comment_id: comment.id), class: "js-like-comment #{'is-liked' if current_user && current_user.liking?(post)}", 
-                    method: 'post', remote: true %>
-                <small><%= time_ago_in_words post.updated_at %> ago</small>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  <%= form_for(current_user.comments.build(post: post)) do |f| %>  
-    <%= f.hidden_field :post_id %>        
-    <div class="card-content">
-      <div class="media">
-        <div class="media-left">
-          <div class="image is-32x32">
-            <%= image_tag "http://lorempixel.com/128/128/people/" %>
-          </div>
-        </div>
-        <div class="media-content">          
-          <%= f.text_field :body, class: "input", placeholder: "Write a comment..." %>
-        </div>
-      </div>          
-    </div>
-  <% end %>  
+  <%= render "posts/likes_sentence", post: post %>
+  <%= render "posts/comment", post: post %>
+    
 </div>

@@ -10,6 +10,7 @@ class PostsController < ApplicationController
     @post = Post.new post_params
     @post.poster = current_user
     @post.save
+    raise
     redirect_to root_path
   end
 

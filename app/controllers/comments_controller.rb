@@ -1,9 +1,11 @@
 class CommentsController < ApplicationController
   def create
-    @comment = Comment.new comment_params
-    @comment.user = current_user
-    @comment.save
-    redirect_to root_path
+    @comment = current_user.comments.create comment_params
+    
+    respond_to do |format|
+      format.html{ redirect_back fallback_location: root_path }
+      format.js
+    end
   end
 
   def destroy

@@ -14,7 +14,7 @@
             <% else %>
               <%= form_for current_user.friendships.build(friend: user) do |f| %>
                 <%= f.hidden_field :friend_id %>
-                <%= f.submit "Add Friend", class: "button is-primary" %>
+                <%= f.submit "Add Friend", class: "button is-warning" %>
               <% end %>
             <% end %>
           </div>

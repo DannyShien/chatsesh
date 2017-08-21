@@ -13,7 +13,7 @@ A Facebook clone for the Bootcamp Ruby class.
 
 ## Still wanting to implement
 
-- [ ] User can Login with Facebook
+- [x] User can Login with Facebook
 
 ## Optional features
 
