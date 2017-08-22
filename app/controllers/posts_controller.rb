@@ -20,8 +20,15 @@ class PostsController < ApplicationController
 
   def paging
     params[:per] ||= 5
-    @posts = Post.order("updated_at DESC").page(params[:page]).per(params[:per]) 
+    @post = Post.order("updated_at DESC").page(params[:page]).per(params[:per]) 
 
-    render partial: 'post', collection: @posts, layout: false
+    render partial: 'post', collection: @post, layout: false
   end
+
+  def show
+    respond_to do |format|
+      format.html
+      format.json { render json: @post}
+    end
 end
+

@@ -28,8 +28,6 @@ function setupInfiniteScroll(e) {
       $.ajax({
         url: baseEndpoint + currentPage // "posts/paging?page=2"
       }).done(function (result) {
-        console.log($('.js-posts'))
-        $('.js-posts').append(result)
         $('.all-posts').append(result);
         isPaginating = false;
       });
