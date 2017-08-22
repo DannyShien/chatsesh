@@ -57,3 +57,7 @@ gem 'omniauth'
 gem 'omniauth-facebook', '~> 4.0.0'
 
 gem 'simple_form'
+
+gem 'kaminari'
+gem 'faker'
+

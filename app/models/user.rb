@@ -58,6 +58,12 @@ class User < ApplicationRecord
       User.create! hash
     end
   end 
+
+  def self.random_user
+    random_index = rand(User.count)
+    User.offset(random_index).first
+  end
+
   def self.from_omniauth(auth)
     # Check out the Auth Hash function at https://github.com/mkdynamic/omniauth-facebook#auth-hash
     # and figure out how to get email for this user.
