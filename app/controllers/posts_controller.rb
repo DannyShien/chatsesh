@@ -17,4 +17,11 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:body)
   end
+
+  def paging
+    params[:per] ||= 5
+    @posts = Post.order("updated_at DESC").page(params[:page]).per(params[:per]) 
+
+    render partial: 'post', collection: @posts, layout: false
+  end
 end

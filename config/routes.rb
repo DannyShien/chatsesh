@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :posts do
     get :paging, on: :collection
   end
+  
   resources :users
   resources :comments
   resources :friendships

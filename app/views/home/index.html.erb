@@ -43,9 +43,11 @@
           </div>
         </div>
         <% end %>        
-        <% @posts.each do |post| %>
-          <%= render "posts/post", post: post %>
-        <% end %>
+        <div class="all-posts">
+          <% @posts.each do |post| %>
+            <%= render "posts/post", post: post %>
+          <% end %>
+        </div>
         </div>
       </div>
     </div>
