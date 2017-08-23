@@ -1,4 +1,4 @@
 $post = $("#post_<%= @comment.post.id %>");
 $post.find(".all-comments").append("<%= j render @comment %>");
 
-$post.find("input.js-new-comment").val("nil");
+$post.find("input.js-new-comment").val("");
