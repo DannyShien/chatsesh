@@ -1,8 +1,8 @@
 <% if @item.class == Post %>
   $("#<%= dom_id @item %>").find(".js-like-post").toggleClass("is-liked");
-  $("#<%= dom_id @item %>").find(".js-likes-sentence").replaceWith("<%= j render 'posts/likes_sentence', post: @item %>") 
+  $("#<%= dom_id @item %>").find(".js-likes-sentence").replaceWith("<%= j render 'posts/likes_sentence', post: @item %>"); 
 
 <% else %>
-  $("#<%= dom_id @item %>").find(".js-like-comment").toggleClass("is-liked");
+  $("#<%= dom_id @item %>").find("a.js-like-comment").toggleClass("is-liked");
 <% end %>
 

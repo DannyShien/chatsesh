@@ -1,0 +1,17 @@
+<div class="comment card-content" id="<%= dom_id comment %>">
+  <div class="media">
+    <div class="media-left"> 
+      <p class="image is-32x32">
+        <%= image_tag current_user.image_url_or_default %>
+      </p>
+    </div>
+    <div class="media-content>"><%= comment.body %>
+      <div class="level">
+        <div class="level-left">
+          <%= link_to "Like", toggle_like_path(comment_id: comment.id), class: "js-like-comment #{'is-liked' if current_user && current_user.liking?(comment)}", 
+              method: 'post', remote: true %>          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

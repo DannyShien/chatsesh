@@ -1,0 +1,17 @@
+<div class="comments">
+  <%= form_for(current_user.comments.build(post: post), remote: true) do |f| %>  
+    <%= f.hidden_field :post_id %>        
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          <div class="image is-32x32">
+            <%= image_tag "http://lorempixel.com/128/128/people/" %>
+          </div>
+        </div>
+        <div class="media-content">          
+          <%= f.text_field :body, class: "input", placeholder: "Write a comment..." %>
+        </div>
+      </div>          
+    </div>
+  <% end %>
+</div>

@@ -25,7 +25,7 @@
               </figure>
               <div class="media-content">             
                 <div class="field">
-                  <%= f.hidden_field :poster_id, value: current_user.id %>
+                  <%= f.hidden_field :wall_user_id, value: current_user.id %>
                   <%= f.text_area :body, class: "textarea", placeholder: "What's on your mind, #{current_user.name}?" %>
                 </div>
                 <nav class="level">
