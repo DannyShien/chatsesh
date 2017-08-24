@@ -10,7 +10,12 @@ Rails.application.routes.draw do
     get :paging, on: :collection
   end
   
-  resources :users
+  resources :users do
+    member do 
+      get 'profile'
+    end
+  end
+  
   resources :comments
   resources :friendships
   resources :posts, only: [:create]

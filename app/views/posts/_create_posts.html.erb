@@ -1,0 +1,32 @@
+<div class="create_post">
+  <%= form_for(current_user.posts.build) do |f| %>
+    <div class="card-post" style="margin-bottom: 20px">
+      <div class="card-content">
+        <article class="media">
+          <figure class="media-left">
+            <p class="image is-32x32">
+              <%= image_tag current_user.image_url_or_default %>
+            </p>
+          </figure>
+          <div class="media-content">             
+            <div class="field">
+              <%= f.hidden_field :wall_user_id, value: current_user.id %> 
+              <%= f.text_area :body, class: "textarea", placeholder: "What's on your mind, #{current_user.name}?" %>
+            </div>
+            <nav class="level">
+              <div class="level-left">
+                <div class="level-item"></div>
+              </div>  
+              <div class="level-right">
+                <button class="level-item button is-warning">
+                  <p><%= icon("send", "Send") %></p>
+                </button>
+              </div>
+            </nav>  
+          </div>
+        </article>
+      </div>
+    </div>
+  <% end %>
+</div>
+  

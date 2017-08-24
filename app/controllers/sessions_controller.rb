@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
 
   def create
     if user = User.find_by(email: params[:email])
-      if user.authenticate(params[:password_confirmation])
+      if user.authenticate(params[:password])
         login(user)
         flash[:success] = "Logged in!"
       else
@@ -23,7 +23,8 @@ class SessionsController < ApplicationController
   end
   
   def callback 
-    if user = User.from_omniauth(request.env["omniauth.auth"])
+    user = User.from_omniauth(request.env["omniauth.auth"])
+    if user
       login(user)
       redirect_to root_path, flash: {success: "Logged In"}
     else

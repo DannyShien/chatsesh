@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   
-  validates :name, :email, :password, :password_confirmation, presence: true
+  validates :name, :email, :password, :password_confirmation, presence: true, unless: 
   has_secure_password
 
   def image_url_or_default
@@ -91,7 +91,7 @@ class User < ApplicationRecord
     # You may want to call user.save! to figure out why user can't save
     #
     # Finally, return user
-    user.save && user
+    user.save(validate: false) && user
   end
 
   def toggle_like!(item)
