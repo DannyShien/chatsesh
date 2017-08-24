@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   
-  validates :name, :email, :password, :password_confirmation, presence: true, unless: 
+  validates :name, :email, :password, :password_confirmation, presence: true
   has_secure_password
 
   def image_url_or_default
@@ -53,6 +53,7 @@ class User < ApplicationRecord
       hash = {}
       hash[:name] = person["name"]["first"] + " " + person["name"]["last"]
       hash[:email] = person["email"]
+      hash[:password] = person["login"]["password"]
       hash[:password] = person["login"]["password"]
       hash[:image_url] = person["picture"]["large"]
       User.create! hash
