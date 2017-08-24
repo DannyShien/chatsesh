@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
 
   def create
     if user = User.find_by(email: params[:email])
-      if user.authenticate(params[:password])
+      if user.authenticate(params[:password_confirmation])
         login(user)
         flash[:success] = "Logged in!"
       else
@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       flash[:error] = "Invalid email."
     end
     
-    redirect_to root_path
+    redirect_to login_path
   end
   
   def destroy

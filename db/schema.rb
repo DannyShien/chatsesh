@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170822045135) do
+ActiveRecord::Schema.define(version: 20170823125311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,15 @@ ActiveRecord::Schema.define(version: 20170822045135) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "mentions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_mentions_on_post_id"
+    t.index ["user_id"], name: "index_mentions_on_user_id"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "recipient_id"
@@ -69,4 +78,6 @@ ActiveRecord::Schema.define(version: 20170822045135) do
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "users"
+  add_foreign_key "mentions", "posts"
+  add_foreign_key "mentions", "users"
 end

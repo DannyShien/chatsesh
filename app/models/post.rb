@@ -7,7 +7,9 @@ class Post < ApplicationRecord
   has_many :likes, as: :item, dependent: :destroy
   has_many :comments
 
-  def self.generate_posts(n = 5, user = nil)
+  has_many :mentions, dependent: :destroy
+
+  def self.generate_posts(n = 5, user = nil, generate_mentions = true)
     user ||= User.last 
     n.times do
       post = Post.create(
@@ -21,6 +23,14 @@ class Post < ApplicationRecord
           body: Faker::MostInterestingManInTheWorld.quote,
           user: User.random_user
         )
+      end
+
+      if generate_mentions
+        rand(5).times do
+          post.mentions.create(
+            user: User.random_user
+          )
+        end
       end
     end
   end

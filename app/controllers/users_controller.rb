@@ -26,13 +26,20 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.all.order("created_at DESC")
+  end
+
+  def search
+    @user = User.autocomplete(params[:q])
+    respond_to do |format|
+      format.json
+    end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
 end

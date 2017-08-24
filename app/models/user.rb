@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   
-  validates :name, :email, presence: true
+  validates :name, :email, :password, :password_confirmation, presence: true
   has_secure_password
 
   def image_url_or_default
@@ -62,6 +62,18 @@ class User < ApplicationRecord
   def self.random_user
     random_index = rand(User.count)
     User.offset(random_index).first
+  end
+
+  def self.generate_test_user_fast
+    User.create(
+      name: "Quy #{rand(100)}",
+      email: "phu#{rand(100)}@vo.com",
+      password: "monster"
+    )
+  end
+
+  def self.autocomplete(name)
+    User.where("name ILIKE ? ", "%#{name}%")
   end
 
   def self.from_omniauth(auth)

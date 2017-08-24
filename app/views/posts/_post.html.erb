@@ -8,6 +8,7 @@
       </div>
       <div class="media-content">
         <p class="is-title"><%= post.poster.name %></p>
+        <%= mentions_text(post) %>
         <small><%= time_ago_in_words post.updated_at %> ago</small>
       </div>
     </div>
