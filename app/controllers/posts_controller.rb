@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     @post = Post.new post_params
     @post.poster = current_user
     if @post.save
-      redirect_to root_path, flash: {success: 'post created'}
+      redirect_back fallback_location: root_path, flash: {success: 'post created'}
     else
       redirect_to root_path, flash: {error: @post.errors.full_messages.to_sentence }
     end

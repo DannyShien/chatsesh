@@ -38,6 +38,7 @@ class UsersController < ApplicationController
 
   def profile 
     @user = User.find(params[:id].to_i)
+    @posts = @user.posts.order("created_at DESC")
   end
 
   private
