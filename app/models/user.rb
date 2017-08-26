@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   
-  validates :name, :email, :password, :password_confirmation, presence: true
+  validates :name, :email, presence: true
   has_secure_password
 
   def image_url_or_default

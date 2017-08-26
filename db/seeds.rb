@@ -10,5 +10,5 @@
 User.generate_users(5, "male")
 User.gemerate_users(5, "females")
 
-Post.generate_posts(10)
+Post.generate_posts(30)
 

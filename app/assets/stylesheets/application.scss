@@ -36,3 +36,14 @@
 .column.is-3 {
   background-color: pink;
 }
+
+.hidden {
+  display:none;
+}
+
+.nested-menu:hover {
+  > ul {
+    display: block;
+  }
+
+}

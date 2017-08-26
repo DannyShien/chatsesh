@@ -7,9 +7,19 @@
       <div class="column is-one-quarter">
         <aside class="menu">
           <ul class="menu-list">
-            <p class="title">Apps</p>
-              <li><%= link_to icon("newspaper-o", "NewsFeed"), root_path, class: "#{'is-active' if current_page?(root_path)}" %></li>
-              <li><%= link_to icon("comments", "Messages"), new_message_path, class: "#{'is-active' if current_page?(inbox_messages_path)}" %></li>
+            <p class="title">Menu</p>
+              <li><%= link_to icon("newspaper-o", "NewsFeed"), root_path, class: "menu-item" %></li>
+              <li><%= link_to icon("user", "#{current_user.name}"), profile_user_path(current_user.id), class: "menu-item" %></li>
+              <li><%= link_to icon("comments", "Messages"), new_message_path, class: "menu-item" %></li>
+              <li><%= link_to icon("users", "Friends"), users_path, class: "menu-item" %></li>
+              <li class="nested-menu"><%= content_tag "a", icon("cog", "Settings") %>
+                <ul class="hidden">
+                  <li><%= link_to icon("pencil", "Edit Profile"), logout_path, class: "menu-item" %></li>
+                  # Work on an update/edits profile. 
+                  <li><%= link_to icon("sign-out", "Log Out"), logout_path, class: "menu-item" %></li>
+                </ul>
+              </li>
+                
           </ul>
         </aside>
       </div>
@@ -28,6 +38,6 @@
     </div>
   </div>
 <% end %>
-                    
 
-          
+
+  
