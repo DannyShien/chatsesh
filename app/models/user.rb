@@ -11,10 +11,13 @@ class User < ApplicationRecord
   
   validates :name, :email, presence: true
   has_secure_password
+  
+  mount_uploader :avatar, AvatarUploader
 
   def image_url_or_default
-    image_url.presence || "http://lorempixel.com/128/128/people/"
+    avatar_url || image_url.presence || "http://lorempixel.com/128/128/people/"
   end
+
   
   def add_friend(another_user)
     friends << another_user
@@ -106,4 +109,6 @@ class User < ApplicationRecord
   def liking?(item)
     likes.where(item: item).exists?
   end
+
+  
 end
