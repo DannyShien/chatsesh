@@ -5,6 +5,8 @@
 @import "users";
 @import "font-awesome";
 @import "posts";
+@import "profiles";
+
 
 .navbar {
   height: 3.25rem;
@@ -29,12 +31,12 @@
 }
 
 
-.column.is-6.is-offset-1 {
-  background-color: yellow;
+.column.is-6 {
+  background-color: rgba(199, 199, 199, 0.32);
 }
 
-.column.is-3 {
-  background-color: pink;
+.column.is-4 {
+  background-color: rgba(199, 199, 199, 0.32);
 }
 
 .hidden {
@@ -45,5 +47,8 @@
   > ul {
     display: block;
   }
+}
 
+.body{
+  background-color:rgba(199, 199, 199, 0.32) !important;
 }

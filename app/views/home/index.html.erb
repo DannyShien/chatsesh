@@ -14,7 +14,7 @@
               <li><%= link_to icon("users", "Friends"), users_path, class: "menu-item" %></li>
               <li class="nested-menu"><%= content_tag "a", icon("cog", "Settings") %>
                 <ul class="hidden">
-                  <li><%= link_to icon("pencil", "Edit Profile"), logout_path, class: "menu-item" %></li>
+                  <li><%= link_to icon("pencil", "Edit Profile"), profile_path, class: "menu-item" %></li>
                   # Work on an update/edits profile. 
                   <li><%= link_to icon("sign-out", "Log Out"), logout_path, class: "menu-item" %></li>
                 </ul>

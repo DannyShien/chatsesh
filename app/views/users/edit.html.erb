@@ -6,28 +6,18 @@
         <h1 class="card-header-title">Update Profile</h1>
       </div>
       <div class="card-content">
-        <%= form_tag login_path do %>
+        <%= form_tag update_profile_path, method: 'put' do %>
           <div class="field">
             <label class="label">Name</label>
             <div class="control">
-              <%= text_field_tag :email, params[:email], class: "input" %>
+              <%= text_field_tag 'user[name]', @user.name, class: "input" %>
             </div>
           </div>
           <div class="field">
             <label class="label">Email</label>
             <div class="control">
-              <%= text_field_tag :email, params[:email], class: "input" %>
+              <%= text_field_tag 'user[email]', @user.email, class: "input" %>
             </div>
-          </div>
-          <div class="field">
-            <label class="label">Password</label>
-            <div class="control">
-              <%= password_field_tag :password, nil, class: "input" %>
-            </div>
-          </div>
-          <div class="field">
-            <%= f.label :avatar, class: "label" %>
-            <div class="control"><%= f.file_field :avatar, class: "input" %></div>
           </div>
           <div class="control">
             <button class="button is-primary">Submit</button>

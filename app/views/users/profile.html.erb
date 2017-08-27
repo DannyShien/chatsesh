@@ -1,43 +1,45 @@
 <div class="container">
   <div class="columns">
     <div class="column is-10 is-offset-1">
-      <section class="hero is-medium is-warning is-bold">
+      <section class="wall hero is-warning">
         <div class="hero-body">
-          <div class="media">
-            <div class="media-left">
-              <%= image_tag(current_user.image_url_or_default, size: "100x100", style: "margin-bottom: -170px") %>
+          <div class="container">
+            <div class="media">
+              <div class="media-left">
+                <div class="image is-128x128">
+                  <%= image_tag(current_user.image_url_or_default) %>
+                </div>
+              </div>
+              <div class="media-content">   
+                <h1 class="title"><%= @user.name %></h1>
+                <h2 class="subtitle">Maybe something here?</h2>
+              </div>
             </div>
           </div>
-          <div class="media-content">   
-            <p class="title"><%= @user.name %></p>
-          </div>
-        </div>
-        <div class="hero-foot">
-          <nav class="tabs is-centered">
-            <div class="container">
-              <ul>
-                <li class="is-active"><a>TimeFeed</a></li>
-                <li><a>About</a></li>
-                <li><a>Friends</a></li>
-              </ul>
-            </div>
-          </nav>
         </div>
       </section>
-    </din>
+      <div class="container">
+        <div class="wall tabs is-meduim">
+          <ul style="margin-left: 200px">
+            <li><%= link_to "NewsFeed", root_path, class: "wall tabs" %></li>
+            <li><%= link_to "About", "/", class: "wall tabs" %></li>
+            <li><%= link_to "Friends", users_path, class: "wall tabs" %></li>         
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <div class="container">
   <div class="columns">
-    <div class="column is-3 is-offset-1">
+    <div class="column is-4 is-offset-1">
       Info/photo..
     </div>
-    <div class="column is-6 is-offset-1">
+    <div class="column is-6">
     <%= render "posts/create_posts", post: @post  %>
     <% @posts.each do |post| %>
       <%= render "posts/post", post: post %>
     <% end %>
-      redirect_to profile_user_path
     </div>
   </div>
 </div>

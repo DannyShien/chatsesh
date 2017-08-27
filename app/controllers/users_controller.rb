@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    current_update.update(user_params)
+    current_user.update(user_params)
     redirect_to root_path
   end
 

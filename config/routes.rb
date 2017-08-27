@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+  
+  get "profile" => "users#edit"
+  put 'update_profile' => "users#update"
 
   post "toggle_like" => "likes#toggle"
   
   get 'auth/:provider/callback' => 'sessions#callback'
   
-  get "profile" => "users#edit"
+ 
 
   resources :posts do
     get :paging, on: :collection
