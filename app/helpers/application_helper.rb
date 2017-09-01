@@ -3,7 +3,7 @@ module ApplicationHelper
     { success: 'is-primary', error: 'is-danger', notice: 'is-warning'}[flash_type.to_sym]
   end
 
-  def flash_messages(opts = {})
+  def flash_messages(flash)
     flash.map do |msg_type, message|
       content_tag(:div, class: "message #{class_for(msg_type)}") do
         content_tag(:div, class: "message-header") do

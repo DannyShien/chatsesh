@@ -41,7 +41,7 @@
         </div>  
       </div>
     </nav>
-    <%= flash_messages %>
+    <%= flash_messages (flash) %>
 
     <div class="container" style="margin-top: 20px">
     <%= content_for?(:content) ? yield(:content) : yield %>
